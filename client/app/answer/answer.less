@@ -1,0 +1,70 @@
+
+
+
+
+
+
+.row {
+  margin-top: 10px;
+}
+
+
+h2 {
+  margin-bottom: 40px;
+}
+
+
+
+label.checkbox-label {
+  &:hover {
+    cursor: pointer;
+  }
+
+
+
+}
+
+
+button.select-one{
+  border: none;
+  box-shadow: none;
+
+  padding: 5px 10px;
+  width: 100%;
+
+  &.active {
+    background-color: lighten(#2c51ff, 25%);
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+}
+
+
+
+.action button {
+  margin-top: 20px;
+  margin-bottom: 40px;
+
+  border: none;
+  border-radius: 0;
+
+  background-color: #111;
+  color: #eee;
+
+  .transition(all 200ms ease);
+
+  &:hover {
+    background-color: #000;
+    color: #ddd;
+  }
+
+
+  &:focus {
+    outline: none;
+  }
+
+}

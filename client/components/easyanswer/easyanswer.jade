@@ -1,0 +1,38 @@
+
+
+.container
+  .row
+    .col-sm-12
+      .section-container
+        .row
+          .section-element(ng-repeat='element in section.elements track by $index')
+
+            .element(ng-if='element.type.id === "title"', easyanswer-element='')
+              h2 {{element.type.content.title}}
+
+            .element(ng-if='element.type.id === "html"', easyanswer-element='')
+              p(ng-bind-html='element.type.content.html')
+
+            .element(ng-if='element.type.id === "selectone"', easyanswer-element='',  easyanswer-selectone='')
+
+            .element(ng-if='element.type.id === "input"', easyanswer-element='', easyanswer-input='')
+
+            .element(ng-if='element.type.id === "select"', easyanswer-element='', easyanswer-select='')
+
+            .element(ng-if='element.type.id === "checkbox"', easyanswer-element='', easyanswer-checkbox='')
+
+
+        .row
+          .action-container
+            .action(ng-repeat='action in section.actions track by $index')
+              button.btn(type='button', ng-click='actionClick($event, section, action)') {{action.label}}
+
+        .row
+          .history-container
+            .row.history(ng-repeat='historyItem in history track by $index')
+              .col-sm-6
+                | {{historyItem.question}}
+              .col-sm-6
+                | {{historyItem.answer}}
+
+

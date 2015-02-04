@@ -1,0 +1,350 @@
+{
+	"version": "1.0",
+	"role": "user",
+	"sections": [
+
+
+		{
+			"id": "levyintroduction",
+
+			"actionsinfo": "These are the section trigger elements responsible for the form flow",
+			"actions" : [
+				{
+					"id": "next",
+					"label": "Start Now"
+				}
+			],
+
+			"flowinfo": "These are the possible flows from the section triggered by an action",
+			"flows" : [
+				{
+					"action": "next",
+					"targetsection": "levyyear",
+					"condition": true,
+          "priority": "1"
+				}
+			],
+
+			"elementsinfo": "These are a list of all the fields/info within a section",
+			"elements": [
+				{
+					"type": {
+						"id": "title",
+						"content": {
+							"title": "ACC Levy Calculator"
+						}
+					},
+					"isHidden": false,
+					"isRequired": false,
+					"isReadOnly": false,
+					"isValid": true,
+					"size": {
+						"mobile": 12,
+						"tablet": 12,
+						"desktop": 12
+					}
+				},
+				{
+					"type": {
+						"id": "html",
+						"content": {
+							"html": "Get an estimate of how much you ACC Levy is.<br><br>Depending on your details and the information you provide this process can take from 5 to 15 minutes.<br><br>Before you start, you will need details of your:<br><br><ul><li>Classification Unit (CU) code</li><li>Employment details such as dates and incomes</li><li>Partner Employment details if are relevant</li></ul>"
+						}
+					},
+					"isHidden": false,
+					"isRequired": false,
+					"isReadOnly": false,
+					"isValid": true,
+					"size": {
+						"mobile": 12,
+						"tablet": 12,
+						"desktop": 12
+					}
+				}
+
+			]
+		},
+
+
+
+		{
+			"id": "levyyear",
+
+			"actionsinfo": "These are the section trigger elements responsible for the form flow",
+			"actions" : [
+				{
+					"id": "next",
+					"label": "Next Step"
+				}
+			],
+
+			"flowinfo": "These are the possible flows from the section triggered by an action",
+			"flows" : [
+				{
+					"action": "next",
+					"targetsection": "classificationunit",
+					"condition": true
+				}
+			],
+
+			"elementsinfo": "These are a list of all the fields/info within a section",
+			"elements": [
+				{
+					"type": {
+						"id": "title",
+						"content": {
+							"title": "ACC Levy Calculator"
+						}
+					},
+					"isHidden": false,
+					"isRequired": true,
+					"isReadOnly": false,
+					"size": {
+						"xs": 12,
+						"sm": 12,
+						"md": 12,
+						"lg": 12
+					}
+				},
+				{
+          "id": "levyyear",
+					"type": {
+						"id": "selectone",
+						"content": {
+							"label": "What Levy Year would you like to calculate?",
+							"options": [
+								{
+                  "id": "1",
+									"option": "April 2015 - March 2016 (Indicative)"
+								},
+								{
+                  "id": "2",
+									"option": "April 2014 - March 2015"
+								},
+								{
+                  "id": "3",
+									"option": "April 2013 - March 2014"
+								},
+								{
+                  "id": "4",
+									"option": "April 2012- March 2013"
+								}
+							]
+						}
+					},
+					"isHidden": false,
+					"isRequired": true,
+					"isReadOnly": false,
+					"isValid": true,
+					"size": {
+						"xs": 12,
+						"sm": 12,
+						"md": 12,
+						"lg": 12
+					}
+				}
+			]
+		},
+
+
+		{
+			"id": "classificationunit",
+
+			"actionsinfo": "These are the section trigger elements responsible for the form flow",
+			"actions" : [
+				{
+					"id": "next",
+					"label": "Next Step"
+				}
+			],
+
+			"flowinfo": "These are the possible flows from the section triggered by an action",
+			"flows" : [
+				{
+					"action": "next",
+					"targetsection": "clienttype",
+					"condition": "any"
+				}
+			],
+
+			"elementsinfo": "These are a list of all the fields/info within a section",
+			"elements": [
+				{
+					"type": {
+						"id": "title",
+						"content": {
+							"title": "ACC Levy Calculator"
+						}
+					},
+					"isHidden": false,
+					"isRequired": false,
+					"isReadOnly": false,
+					"isValid": true,
+					"size": {
+						"xs": 12,
+						"sm": 12,
+						"md": 12,
+						"lg": 12
+					}
+				},
+        {
+          "id": "classificationunit",
+          "type": {
+            "id": "input",
+            "content": {
+              "label": "What is your Classification Unit (CU) code?"
+            }
+          },
+          "isHidden": false,
+          "isRequired": true,
+          "isReadOnly": false,
+          "isValid": true,
+          "size": {
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12
+          }
+        },
+        {
+          "id": "missingclassificationunit",
+          "type": {
+            "id": "checkbox",
+            "content": {
+              "label": "I don't know my classification unit code",
+              "displayBox": false
+            }
+          },
+          "isHidden": false,
+          "isRequired": true,
+          "isReadOnly": false,
+          "isValid": true,
+          "size": {
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12
+          }
+        },
+        {
+          "id": "industrycategory",
+          "type": {
+            "id": "select",
+            "content": {
+              "label": "Your jobs industry"
+            }
+          },
+          "isHidden": "missingclassificationUnitFalse",
+          "isRequired": true,
+          "isReadOnly": false,
+          "isValid": true,
+          "size": {
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12
+          }
+        },
+        {
+          "id": "biccode",
+          "type": {
+            "id": "input",
+            "content": {
+              "label": "BIC code"
+            }
+          },
+          "isHidden": "missingclassificationUnitFalse",
+          "isRequired": true,
+          "isReadOnly": false,
+          "isValid": true,
+          "size": {
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12
+          }
+        }
+
+      ]
+		},
+
+
+    {
+      "id": "clienttype",
+
+      "actionsinfo": "These are the section trigger elements responsible for the form flow",
+      "actions" : [
+        {
+          "id": "next",
+          "label": "Next Step"
+        }
+      ],
+
+      "flowinfo": "These are the possible flows from the section triggered by an action",
+      "flows" : [
+        {
+          "action": "next",
+          "targetsection": "",
+          "condition": "any"
+        }
+      ],
+
+      "elementsinfo": "These are a list of all the fields/info within a section",
+      "elements": [
+        {
+          "type": {
+            "id": "title",
+            "content": {
+              "title": "ACC Levy Calculator"
+            }
+          },
+          "isHidden": false,
+          "isRequired": false,
+          "isReadOnly": false,
+          "isValid": true,
+          "size": {
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12
+          }
+        },
+        {
+          "id": "clienttype",
+          "type": {
+            "id": "selectone",
+            "content": {
+              "label": "What type of client are you?",
+              "options": [
+                {
+                  "id": "1",
+                  "option": "Employer"
+                },
+                {
+                  "id": "2",
+                  "option": "Self employed"
+                },
+                {
+                  "id": "3",
+                  "option": "Shareholder employee"
+                }
+              ]
+            }
+          },
+          "isHidden": false,
+          "isRequired": true,
+          "isReadOnly": false,
+          "isValid": true,
+          "size": {
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12
+          }
+        }
+
+      ]
+    }
+
+	]
+}
