@@ -184,10 +184,15 @@ angular.module('easyanswersApp')
                     continue;
                   }
 
+                  scope.easyanswerSpec.sections[j].elements[z].value = answer;
+
+
+
 
                   scope.history.push({
                     question: question,
-                    answer: answer
+                    answer: answer,
+                    section: scope.easyanswerSpec.sections[j].id
                   });
 
                   break sectionsloop;

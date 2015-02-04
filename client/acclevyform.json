@@ -66,7 +66,6 @@
 		},
 
 
-
 		{
 			"id": "levyyear",
 
@@ -115,7 +114,7 @@
 							"options": [
 								{
                   "id": "1",
-									"option": "April 2015 - March 2016 (Indicative)"
+									"option": "April 2015 - March 2016 - Indicative"
 								},
 								{
                   "id": "2",
@@ -231,10 +230,20 @@
           "type": {
             "id": "select",
             "content": {
-              "label": "Your jobs industry"
+              "label": "Your jobs industry",
+              "options": [
+                {
+                  "id": "1",
+                  "option": "Foresting"
+                },
+                {
+                  "id": "2",
+                  "option": "Computers"
+                }
+              ]
             }
           },
-          "isHidden": "missingclassificationUnitFalse",
+          "isHidden": "missingclassificationunit !== true",
           "isRequired": true,
           "isReadOnly": false,
           "isValid": true,
@@ -253,7 +262,7 @@
               "label": "BIC code"
             }
           },
-          "isHidden": "missingclassificationUnitFalse",
+          "isHidden": "missingclassificationunit !== true",
           "isRequired": true,
           "isReadOnly": false,
           "isValid": true,
@@ -615,7 +624,7 @@
               "label": "What are your Actual Earnings for #{}"
             }
           },
-          "isHidden": false,
+          "isHidden": "levyyear === 'April 2015 - March 2016 - Indicative'",
           "isRequired": true,
           "isReadOnly": false,
           "isValid": true,
@@ -634,7 +643,7 @@
               "label": "What are your Estimated Earnings for #{}"
             }
           },
-          "isHidden": false,
+          "isHidden": "levyyear !== 'April 2015 - March 2016 - Indicative'",
           "isRequired": true,
           "isReadOnly": false,
           "isValid": true,

@@ -32,7 +32,9 @@
             .row.history(ng-repeat='historyItem in history track by $index')
               .col-sm-6
                 | {{historyItem.question}}
-              .col-sm-6
+              .col-sm-4
                 | {{historyItem.answer}}
+              .col-sm-2
+                a(href='/{{historyItem.section}}/') Change
 
 
