@@ -10,7 +10,7 @@ angular.module('easyanswersApp', [
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
-      .otherwise('/');
+      .otherwise('/answer');
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');

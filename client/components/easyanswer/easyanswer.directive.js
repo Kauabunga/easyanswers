@@ -138,17 +138,18 @@ angular.module('easyanswersApp')
         if($stateParams.answerState) {
 
           var currentAnswers = $stateParams.answerState.split('/');
+          $log.debug('currentAnswers', currentAnswers);
 
           for (var i = 0; i < currentAnswers.length; i++) {
 
             sectionsloop:for (var j = 0; j < scope.easyanswerSpec.sections.length; j++) {
-              for (var z = 0; z < scope.easyanswerSpec.sections[j].elements.length; z++) {
+              elementsloop:for (var z = 0; z < scope.easyanswerSpec.sections[j].elements.length; z++) {
 
                 if(scope.easyanswerSpec.sections[j].id === $stateParams.currentSection){
                   continue;
                 }
 
-                if (scope.easyanswerSpec.sections[j].elements[z].id === currentAnswers[i]) {
+                if (scope.easyanswerSpec.sections[j].elements[z].id === currentAnswers[i].split('=')[0]) {
                   $log.debug('found answer');
 
                   //get pretty print question
@@ -161,6 +162,7 @@ angular.module('easyanswersApp')
                   }
                   else{
                     $log.error('type not handled');
+                    continue;
                   }
 
                   //get pretty print answer
@@ -179,6 +181,7 @@ angular.module('easyanswersApp')
                   }
                   else{
                     $log.error('type not handled');
+                    continue;
                   }
 
 

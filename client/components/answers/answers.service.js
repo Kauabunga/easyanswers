@@ -68,7 +68,7 @@ angular.module('easyanswersApp')
 
       var currentState = $stateParams.answerState;
 
-      $log.debug('Setting answer state', currentState, elementId, answerId);
+      //$log.debug('Setting answer state', currentState, elementId, answerId);
 
       if(! currentState && currentState.indexOf(elementId) === -1){
         currentState = elementId + '=' + answerId;

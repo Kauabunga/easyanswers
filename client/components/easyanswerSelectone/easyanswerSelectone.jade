@@ -1,3 +1,6 @@
+.row
+  .col-sm-12
+    | {{element.type.content.label}}
 .row(ng-repeat='option in element.type.content.options track by $index')
   .col-sm-12.col-md-5
     button.select-one(ng-click='selectoneClick(option, $index)', ng-class='{"active": activeIndex == $index}') {{option.option}}
