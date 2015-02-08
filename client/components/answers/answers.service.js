@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('easyanswersApp')
-  .service('Answers', function ($http, $q ,$log, $state, $stateParams) {
+  .service('Answers', function ($http, $q ,$log, $state, $stateParams, $timeout) {
 
 
     var self = this;
@@ -21,14 +21,19 @@ angular.module('easyanswersApp')
 
       var deferred = $q.defer();
 
-      $http.get('acclevyform.json')
-        .success(function(response){
-          deferred.resolve(response);
-        })
-        .error(function(response, statusCode){
-          $log.error('_getAnswerSpec error', response, statusCode);
-          deferred.reject(statusCode);
-        });
+      $timeout(function(){
+        deferred.resolve(_getForm());
+      });
+
+
+      //$http.get('acclevyform.json')
+      //  .success(function(response){
+      //    deferred.resolve(response);
+      //  })
+      //  .error(function(response, statusCode){
+      //    $log.error('_getAnswerSpec error', response, statusCode);
+      //    deferred.reject(statusCode);
+      //  });
 
       return deferred.promise;
     }
@@ -111,6 +116,800 @@ angular.module('easyanswersApp')
 
     }
 
+
+
+
+
+    function _getForm(){
+      return {
+        "version": "1.0",
+        "role": "user",
+        "sections": [
+
+
+          {
+            "id": "levyintroduction",
+
+            "actionsinfo": "These are the section trigger elements responsible for the form flow",
+            "actions" : [
+              {
+                "id": "next",
+                "label": "Start Now"
+              }
+            ],
+
+            "flowinfo": "These are the possible flows from the section triggered by an action",
+            "flows" : [
+              {
+                "action": "next",
+                "targetsection": "levyyear",
+                "condition": true,
+                "priority": "1"
+              }
+            ],
+
+            "elementsinfo": "These are a list of all the fields/info within a section",
+            "elements": [
+              {
+                "type": {
+                  "id": "title",
+                  "content": {
+                    "title": "ACC Levy Calculator"
+                  }
+                },
+                "isHidden": false,
+                "isRequired": false,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "mobile": 12,
+                  "tablet": 12,
+                  "desktop": 12
+                }
+              },
+              {
+                "type": {
+                  "id": "html",
+                  "content": {
+                    "html": "Get an estimate of how much you ACC Levy is.<br><br>Depending on your details and the information you provide this process can take from 5 to 15 minutes.<br><br>Before you start, you will need details of your:<br><br><ul><li>Classification Unit (CU) code</li><li>Employment details such as dates and incomes</li><li>Partner Employment details if are relevant</li></ul>"
+                  }
+                },
+                "isHidden": false,
+                "isRequired": false,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "mobile": 12,
+                  "tablet": 12,
+                  "desktop": 12
+                }
+              }
+
+            ]
+          },
+
+
+          {
+            "id": "levyyear",
+
+            "actionsinfo": "These are the section trigger elements responsible for the form flow",
+            "actions" : [
+              {
+                "id": "next",
+                "label": "Next Step"
+              }
+            ],
+
+            "flowinfo": "These are the possible flows from the section triggered by an action",
+            "flows" : [
+              {
+                "action": "next",
+                "targetsection": "classificationunit",
+                "condition": true
+              }
+            ],
+
+            "elementsinfo": "These are a list of all the fields/info within a section",
+            "elements": [
+              {
+                "type": {
+                  "id": "title",
+                  "content": {
+                    "title": "ACC Levy Calculator"
+                  }
+                },
+                "isHidden": false,
+                "isRequired": true,
+                "isReadOnly": false,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "id": "levyyear",
+                "type": {
+                  "id": "selectone",
+                  "content": {
+                    "label": "What Levy Year would you like to calculate?",
+                    "options": [
+                      {
+                        "id": "1",
+                        "option": "April 2015 - March 2016 - Indicative"
+                      },
+                      {
+                        "id": "2",
+                        "option": "April 2014 - March 2015"
+                      },
+                      {
+                        "id": "3",
+                        "option": "April 2013 - March 2014"
+                      },
+                      {
+                        "id": "4",
+                        "option": "April 2012- March 2013"
+                      }
+                    ]
+                  }
+                },
+                "isHidden": false,
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              }
+            ]
+          },
+
+
+          {
+            "id": "classificationunit",
+
+            "actionsinfo": "These are the section trigger elements responsible for the form flow",
+            "actions" : [
+              {
+                "id": "next",
+                "label": "Next Step"
+              }
+            ],
+
+            "flowinfo": "These are the possible flows from the section triggered by an action",
+            "flows" : [
+              {
+                "action": "next",
+                "targetsection": "clienttype",
+                "condition": "any"
+              }
+            ],
+
+            "elementsinfo": "These are a list of all the fields/info within a section",
+            "elements": [
+              {
+                "type": {
+                  "id": "title",
+                  "content": {
+                    "title": "ACC Levy Calculator"
+                  }
+                },
+                "isHidden": false,
+                "isRequired": false,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "id": "classificationunit",
+                "type": {
+                  "id": "input",
+                  "content": {
+                    "label": "What is your Classification Unit (CU) code?"
+                  }
+                },
+                "isHidden": false,
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "id": "missingclassificationunit",
+                "type": {
+                  "id": "checkbox",
+                  "content": {
+                    "label": "I don't know my classification unit code",
+                    "displayBox": false
+                  }
+                },
+                "isHidden": false,
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "id": "industrycategory",
+                "type": {
+                  "id": "select",
+                  "content": {
+                    "label": "Your jobs industry",
+                    "options": [
+                      {
+                        "id": "1",
+                        "option": "Foresting"
+                      },
+                      {
+                        "id": "2",
+                        "option": "Computers"
+                      }
+                    ]
+                  }
+                },
+                "isHidden": "missingclassificationunit !== true",
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "id": "biccode",
+                "type": {
+                  "id": "input",
+                  "content": {
+                    "label": "BIC code"
+                  }
+                },
+                "isHidden": "missingclassificationunit !== true",
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              }
+
+            ]
+          },
+
+
+          {
+            "id": "clienttype",
+
+            "actionsinfo": "These are the section trigger elements responsible for the form flow",
+            "actions" : [
+              {
+                "id": "next",
+                "label": "Next Step"
+              }
+            ],
+
+            "flowinfo": "These are the possible flows from the section triggered by an action",
+            "flows" : [
+              {
+                "action": "next",
+                "targetsection": "employmentstatus",
+                "condition": "any"
+              }
+            ],
+
+            "elementsinfo": "These are a list of all the fields/info within a section",
+            "elements": [
+              {
+                "type": {
+                  "id": "title",
+                  "content": {
+                    "title": "ACC Levy Calculator"
+                  }
+                },
+                "isHidden": false,
+                "isRequired": false,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "id": "clienttype",
+                "type": {
+                  "id": "selectone",
+                  "content": {
+                    "label": "What type of client are you?",
+                    "options": [
+                      {
+                        "id": "1",
+                        "option": "Employer"
+                      },
+                      {
+                        "id": "2",
+                        "option": "Self employed"
+                      },
+                      {
+                        "id": "3",
+                        "option": "Shareholder employee"
+                      }
+                    ]
+                  }
+                },
+                "isHidden": false,
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              }
+
+            ]
+          },
+
+
+          {
+            "id": "employmentstatus",
+
+            "actionsinfo": "These are the section trigger elements responsible for the form flow",
+            "actions" : [
+              {
+                "id": "next",
+                "label": "Next Step"
+              }
+            ],
+
+            "flowinfo": "These are the possible flows from the section triggered by an action",
+            "flows" : [
+              {
+                "action": "next",
+                "targetsection": "employmentstartdate",
+                "condition": "any"
+              }
+            ],
+
+            "elementsinfo": "These are a list of all the fields/info within a section",
+            "elements": [
+              {
+                "type": {
+                  "id": "title",
+                  "content": {
+                    "title": "ACC Levy Calculator"
+                  }
+                },
+                "isHidden": false,
+                "isRequired": false,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "id": "employmentstatus",
+                "type": {
+                  "id": "selectone",
+                  "content": {
+                    "label": "What is your employment status?",
+                    "options": [
+                      {
+                        "id": "1",
+                        "option": "Full Time"
+                      },
+                      {
+                        "id": "2",
+                        "option": "Part Time"
+                      }
+                    ]
+                  }
+                },
+                "isHidden": false,
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              }
+
+            ]
+          },
+
+
+          {
+            "id": "employmentstartdate",
+
+            "actionsinfo": "These are the section trigger elements responsible for the form flow",
+            "actions" : [
+              {
+                "id": "next",
+                "label": "Next Step"
+              }
+            ],
+
+            "flowinfo": "These are the possible flows from the section triggered by an action",
+            "flows" : [
+              {
+                "action": "next",
+                "targetsection": "healthandsafetydiscount",
+                "condition": "any"
+              }
+            ],
+
+            "elementsinfo": "These are a list of all the fields/info within a section",
+            "elements": [
+              {
+                "type": {
+                  "id": "title",
+                  "content": {
+                    "title": "ACC Levy Calculator"
+                  }
+                },
+                "isHidden": false,
+                "isRequired": false,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "id": "employmentstartdate",
+                "type": {
+                  "id": "input",
+                  "content": {
+                    "label": "When did you start this employment?"
+                  }
+                },
+                "isHidden": false,
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              }
+
+            ]
+          },
+
+
+          {
+            "id": "healthandsafetydiscount",
+
+            "actionsinfo": "These are the section trigger elements responsible for the form flow",
+            "actions" : [
+              {
+                "id": "next",
+                "label": "Next Step"
+              }
+            ],
+
+            "flowinfo": "These are the possible flows from the section triggered by an action",
+            "flows" : [
+              {
+                "action": "next",
+                "targetsection": "earnings",
+                "condition": "any"
+              }
+            ],
+
+            "elementsinfo": "These are a list of all the fields/info within a section",
+            "elements": [
+              {
+                "type": {
+                  "id": "title",
+                  "content": {
+                    "title": "ACC Levy Calculator"
+                  }
+                },
+                "isHidden": false,
+                "isRequired": false,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "id": "healthandsafetydiscount",
+                "type": {
+                  "id": "selectone",
+                  "content": {
+                    "label": "What Health & Safety Discount do you hold?",
+                    "options": [
+                      {
+                        "id": "1",
+                        "option": "None"
+                      },
+                      {
+                        "id": "2",
+                        "option": "Workplace Safety Discount - 10%"
+                      },
+                      {
+                        "id": "3",
+                        "option": "WSMP Primary - 10%"
+                      },
+                      {
+                        "id": "4",
+                        "option": "WSMP Secondary - 10%"
+                      }
+                    ]
+                  }
+                },
+                "isHidden": false,
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              }
+
+            ]
+          },
+
+
+          {
+            "id": "earnings",
+
+            "actionsinfo": "These are the section trigger elements responsible for the form flow",
+            "actions" : [
+              {
+                "id": "next",
+                "label": "Next Step"
+              }
+            ],
+
+            "flowinfo": "These are the possible flows from the section triggered by an action",
+            "flows" : [
+              {
+                "action": "next",
+                "targetsection": "estimationsummary",
+                "condition": "any"
+              }
+            ],
+
+            "elementsinfo": "These are a list of all the fields/info within a section",
+            "elements": [
+              {
+                "type": {
+                  "id": "title",
+                  "content": {
+                    "title": "ACC Levy Calculator"
+                  }
+                },
+                "isHidden": false,
+                "isRequired": false,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "id": "actualearnings",
+                "type": {
+                  "id": "input",
+                  "content": {
+                    "label": "What are your Actual Earnings for #{}"
+                  }
+                },
+                "isHidden": "levyyear === 'April 2015 - March 2016 - Indicative'",
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "id": "estimatedearnings",
+                "type": {
+                  "id": "input",
+                  "content": {
+                    "label": "What are your Estimated Earnings for #{}"
+                  }
+                },
+                "isHidden": "levyyear !== 'April 2015 - March 2016 - Indicative'",
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              }
+
+            ]
+          },
+
+
+          {
+            "id": "estimationsummary",
+
+            "actionsinfo": "These are the section trigger elements responsible for the form flow",
+            "actions" : [
+              {
+                "id": "startover",
+                "label": "Start Over"
+              }
+            ],
+
+            "flowinfo": "These are the possible flows from the section triggered by an action",
+            "flows" : [
+              {
+                "action": "startover",
+                "targetsection": "levyintroduction",
+                "condition": "any"
+              },
+              {
+                "action": "printsummary",
+                "targetsection": "",
+                "condition": "any"
+              }
+            ],
+
+            "elementsinfo": "These are a list of all the fields/info within a section",
+            "elements": [
+              {
+                "type": {
+                  "id": "title",
+                  "content": {
+                    "title": "ACC Levy Calculator"
+                  }
+                },
+                "isHidden": false,
+                "isRequired": false,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "type": {
+                  "id": "html",
+                  "content": {
+                    "html": "Based on the information you have provided, your ACC Levy for #{} is:"
+                  }
+                },
+                "isHidden": false,
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "type": {
+                  "id": "html",
+                  "content": {
+                    "html": "In order to print your Levy Estimation, we need to know your name."
+                  }
+                },
+                "isHidden": false,
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "id": "name",
+                "type": {
+                  "id": "input",
+                  "content": {
+                    "label": "What is your Name?"
+                  }
+                },
+                "isHidden": false,
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              },
+              {
+                "id": "agreetotandc",
+                "type": {
+                  "id": "checkbox",
+                  "content": {
+                    "label": "I have understood the terms and conditions of use",
+                    "displayBox": true
+                  }
+                },
+                "isHidden": false,
+                "isRequired": true,
+                "isReadOnly": false,
+                "isValid": true,
+                "size": {
+                  "xs": 12,
+                  "sm": 12,
+                  "md": 12,
+                  "lg": 12
+                }
+              }
+
+            ]
+          }
+
+        ]
+      };
+
+    }
 
 
 
