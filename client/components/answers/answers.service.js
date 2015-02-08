@@ -79,8 +79,9 @@ angular.module('easyanswersApp')
       else{
 
         //need to replace the item
-        var splitState = currentState.split('/');
-        for(var i = 0; i < splitState.length; i++){
+        var splitState = currentState.split('/'),
+          i;
+        for(i = 0; i < splitState.length; i++){
           if(splitState[i].split('=')[0] === elementId){
             splitState[i] = elementId + '=' + answerId;
           }
@@ -88,7 +89,7 @@ angular.module('easyanswersApp')
 
 
         currentState = '';
-        for(var i = 0; i < splitState.length; i++) {
+        for(i = 0; i < splitState.length; i++) {
           currentState += splitState[i];
 
           if (i + 1 !== splitState.length) {

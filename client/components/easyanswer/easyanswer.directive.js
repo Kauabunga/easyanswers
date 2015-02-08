@@ -109,6 +109,8 @@ angular.module('easyanswersApp')
 
 
       var isFreshAnswer = $state.$current.name === 'answerinit';
+      var i;
+
       if(isFreshAnswer) {
         $log.debug('fresh answer');
 
@@ -119,7 +121,8 @@ angular.module('easyanswersApp')
         //init with the current state
         $log.debug('progressed answer');
 
-        for(var i = 0; i < scope.easyanswerSpec.sections.length; i++){
+
+        for(i = 0; i < scope.easyanswerSpec.sections.length; i++){
           if(scope.easyanswerSpec.sections[i].id === $stateParams.currentSection){
             scope.section = scope.easyanswerSpec.sections[i];
           }
@@ -140,7 +143,9 @@ angular.module('easyanswersApp')
           var currentAnswers = $stateParams.answerState.split('/');
           $log.debug('currentAnswers', currentAnswers);
 
-          for (var i = 0; i < currentAnswers.length; i++) {
+
+
+          for (i = 0; i < currentAnswers.length; i++) {
 
             sectionsloop:for (var j = 0; j < scope.easyanswerSpec.sections.length; j++) {
               elementsloop:for (var z = 0; z < scope.easyanswerSpec.sections[j].elements.length; z++) {

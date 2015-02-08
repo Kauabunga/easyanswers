@@ -1,4 +1,9 @@
+/* jshint ignore:start */
+// Code here will be ignored by JSHint.
+
+
 'use strict';
+
 
 angular.module('easyanswersApp')
   .directive('easyanswerElement', function ($log) {
@@ -48,7 +53,7 @@ angular.module('easyanswersApp')
               }
             }
 
-            return elems.map(function(name){return _getElementScopePath(scope, name)});
+            return elems.map(function(name){return _getElementScopePath(scope, name);});
           })();
 
           $log.debug('conditions', conditions);
@@ -123,7 +128,7 @@ angular.module('easyanswersApp')
             result = _evalCondition(scope, c[0], c[1], c[2]);
             $log.debug('evaluated ', c,' to ', result);
           }catch (error){
-            throw new Error("Could not evaluate condition: '"+conditionString+"' error is: "+error.message);
+            throw new Error('Could not evaluate condition: \'' + conditionString + '\' error is: ' + error.message);
           }
         }
 
@@ -164,7 +169,7 @@ angular.module('easyanswersApp')
       $log.debug('expectedValue: ', expectedValue);
 
       //expected value is a string
-      if(expectedValue[0] === "'" && expectedValue[expectedValue.length - 1] === "'"){
+      if(expectedValue[0] === '\'' && expectedValue[expectedValue.length - 1] === '\''){
 
         $log.debug('expectedValue is a string.');
         //strip quotes from string
@@ -177,26 +182,26 @@ angular.module('easyanswersApp')
             elementValue = [''];
           }
           switch (op) {
-            case "===":
-            case "==":
+            case '===':
+            case '==':
               return (elementValue.indexOf(expectedValue) != -1);
-            case "!==":
-            case "!=":
+            case '!==':
+            case '!=':
               return (elementValue.indexOf(expectedValue) == -1);
             default:
-              throw new Error("Invalid operator for list: "+op);
+              throw new Error('Invalid operator for list: '+op);
           }
         }
 
         switch (op) {
-          case "===":
-          case "==":
+          case '===':
+          case '==':
             return elementValue == expectedValue;
-          case "!==":
-          case "!=":
+          case '!==':
+          case '!=':
             return elementValue != expectedValue;
           default:
-            throw new Error("Invalid operator for string: "+op);
+            throw new Error('Invalid operator for string: '+op);
         }
       }
 
@@ -206,14 +211,14 @@ angular.module('easyanswersApp')
         expectedValue = expectedValue === 'true' ? true : false;
 
         switch (op) {
-          case "===":
-          case "==":
+          case '===':
+          case '==':
             return elementValue === expectedValue;
-          case "!==":
-          case "!=":
+          case '!==':
+          case '!=':
             return elementValue !== expectedValue;
           default:
-            throw new Error("Invalid operator for string: "+op);
+            throw new Error('Invalid operator for string: '+op);
         }
 
 
@@ -232,28 +237,27 @@ angular.module('easyanswersApp')
       }
 
 
-      if (isNaN(a)) return false;
-      //throw new Error("Expected a number but could not parse as one: "+elementValue);
-      if (isNaN(b)) throw new Error("Expected a number but could not parse as one: "+expectedValue);
+      if (isNaN(a)) {return false;}
+      if (isNaN(b)) {throw new Error('Expected a number but could not parse as one: '+expectedValue);}
 
 
       switch (op) {
-        case "<":
+        case '<':
           return a < b;
-        case "<=":
+        case '<=':
           return a <= b;
-        case ">":
+        case '>':
           return a > b;
-        case ">=":
+        case '>=':
           return a >= b;
-        case "===":
-        case "==":
+        case '===':
+        case '==':
           return a == b;
-        case "!==":
-        case "!=":
+        case '!==':
+        case '!=':
           return a != b;
         default:
-          throw new Error("Invalid operator for number: "+op);
+          throw new Error('Invalid operator for number: '+op);
       }
     }
 
@@ -287,15 +291,15 @@ angular.module('easyanswersApp')
      */
     function _parseConditions(conditionString){
       //split conditional string into single conditionals
-      //eg "element1=='value1'||element2!='value2'" => [ "element1=='value1'", "element2!='value2'" ]
+      //eg 'element1=='value1'||element2!='value2'' => [ 'element1=='value1'', 'element2!='value2'' ]
       var conditions = conditionString.split(/[\(\)|&]+/);
 
       //split a single conditional into array eg ["element1", "==", "'value1'"]
       conditions = conditions.map(function(el){
-        if (el === '') return el;
+        if (el === '') { return el; }
 
         var args = el.split(/===|!==|==|!=|<=|>=|<|>/);
-        if (args.length !== 2) throw new Error("Something went wrong parsing the condition: "+conditionString);
+        if (args.length !== 2) { throw new Error('Something went wrong parsing the condition: '+conditionString); }
 
         //move second argument over to make room for operator
         args[2] = args[1];
@@ -328,3 +332,6 @@ angular.module('easyanswersApp')
 
 
   });
+
+
+/* jshint ignore:end */
