@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('easyanswersApp')
-  .controller('AnswerCtrl', function ($scope, Answers, $q, $timeout, $state, $log) {
+  .controller('AnswerCtrl', function (Answers, $scope, $q, $timeout, $state, $log) {
 
 
     $scope.easyanswerSpec = undefined;

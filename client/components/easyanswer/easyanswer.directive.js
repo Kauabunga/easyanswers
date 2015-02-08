@@ -9,47 +9,42 @@ angular.module('easyanswersApp')
         easyanswerSpec: '=',
         easyanswerPromise: '='
       },
-      controller: easyanswerController,
+      controller: function ($scope){
+
+        $scope.actionClick = function($event, section, action){
+          $scope.$broadcast('CLICK_ACTION', action);
+
+          var nextState;
+
+          //figure out what our next state is
+          for(var i = 0; i < section.flows.length; i++){
+            if(section.flows[i].action === action.id &&
+              section.flows[i].condition){
+
+              nextState = section.flows[i];
+
+              break;
+            }
+          }
+
+
+          if(nextState){
+            $state.go('answerstate', {
+              currentSection: nextState.targetsection
+            });
+
+          }
+          else{
+            $log.error('Could not id next state', action, section);
+          }
+
+        };
+
+      },
       link: easyanswerLink
     };
 
 
-    /**
-     *
-     * @param $scope
-     */
-    function easyanswerController($scope){
-
-      $scope.actionClick = function($event, section, action){
-        $scope.$broadcast('CLICK_ACTION', action);
-
-        var nextState;
-
-        //figure out what our next state is
-        for(var i = 0; i < section.flows.length; i++){
-          if(section.flows[i].action === action.id &&
-            section.flows[i].condition){
-
-            nextState = section.flows[i];
-
-            break;
-          }
-        }
-
-
-        if(nextState){
-          $state.go('answerstate', {
-            currentSection: nextState.targetsection
-          });
-
-        }
-        else{
-          $log.error('Could not id next state', action, section);
-        }
-
-      };
-
-    }
 
     /**
      *
